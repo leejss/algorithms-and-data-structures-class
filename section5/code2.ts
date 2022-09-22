@@ -24,3 +24,15 @@ export function sumZero2(arr: number[]) {
   }
   return false;
 }
+
+export function countUniqueValues(arr: number[]) {
+  let answer = 0;
+  let prev = undefined;
+  for (const n of arr) {
+    if (prev !== n) {
+      answer++;
+      prev = n;
+    }
+  }
+  return answer;
+}
