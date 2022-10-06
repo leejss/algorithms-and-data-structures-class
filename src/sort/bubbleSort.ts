@@ -1,36 +1,36 @@
 function bubbleSort(arr: number[]) {
-  // bubble up
-  const swap = (targetArr: number[], left: number, right: number) => {
-    [targetArr[left], targetArr[right]] = [targetArr[right], targetArr[left]];
-  };
-
-  // What i and j point to ?
   for (let i = 0; i < arr.length - 1; i++) {
     for (let j = i + 1; j < arr.length; j++) {
-      // compare arr[i] and arr[j]
-      if (i === 0) {
-        console.log(`compare${i}-${j}`, { "arr[i]": arr[i], "arr[j]": arr[j] });
-      }
-
       if (arr[i] > arr[j]) {
-        // swap
-        swap(arr, i, j);
+        // in place replacement
+        [arr[i], arr[j]] = [arr[j], arr[i]];
       }
     }
   }
+  return arr;
 }
 
-bubbleSort([5, 4, 3, 2, 1]);
+const testArr = [
+  1, 55, 42, 54, 17, 44, 15, 57, 39, 30, 68, 6, 43, 33, 46, 18, 47, 64, 31, 9,
+  4, 69, 12, 22, 8, 34, 67, 19, 35, 7,
+];
 
-// 5 4 3 2 1
+console.log(bubbleSort(testArr));
 
-// 4 5 3 2 1
+function bubbleSortOp(arr: number[]) {
+  // noSwap => sorted
+  for (let i = 0; i < arr.length - 1; i++) {
+    let swap = false;
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] > arr[j]) {
+        // in place replacement
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+        swap = true;
+      }
+    }
+    if (!swap) break;
+  }
+  return arr;
+}
 
-// 4 3 5 2 1
-
-// 4 3 2 5 1
-
-// 4 3 2 1 5
-
-// how sort works ?
-// it swap the positions
+console.log(bubbleSortOp(testArr));
